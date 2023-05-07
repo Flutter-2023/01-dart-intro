@@ -5,10 +5,14 @@ void main() {
   // final EnergyPlant windPlant = new EnergyPlant();
 
   final WindPlant windPlant = WindPlant(initialEnergy: 100);
+  final NuclearPlant nuclearPlant = NuclearPlant(energyLeft: 1000);
 
-  print(windPlant);
+  // print(windPlant);
   
+  // Extienden de EnergyPlant
   print('Wind: ${ chargePhone( windPlant ) }');
+  print('Nuclear: ${ chargePhone( nuclearPlant ) }');
+  
 }
 
 // Principio de inversion de dependencias
@@ -25,7 +29,7 @@ enum PlantType { nuclear, wind, water }
 abstract class EnergyPlant {
 
   double energyLeft;
-  PlantType type; // nuclear, wind, water
+  final PlantType type; // nuclear, wind, water
 
   EnergyPlant({ 
     required this.energyLeft,
@@ -40,7 +44,7 @@ abstract class EnergyPlant {
 }
 
 // Crear clase
-// extends o implements
+//** extends
 class WindPlant extends EnergyPlant {
 
   WindPlant({
@@ -54,3 +58,20 @@ class WindPlant extends EnergyPlant {
  
 }
 
+//** implements
+class NuclearPlant implements EnergyPlant {
+
+  @override
+  double energyLeft;
+
+  @override
+  final PlantType type = PlantType.nuclear;
+
+  NuclearPlant({ required this.energyLeft });
+
+  @override
+  void consumeEnergy(double amount) {
+    energyLeft -= (amount  * 0.5);
+  }
+  
+}
