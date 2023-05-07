@@ -8,7 +8,9 @@ void main() {
 
   print('Suma optional: ${ addTwoNumbersOptional(15) }');
 
-
+  // Argumentos con nombre
+  print( greetPerson(name: 'Angel', message: 'Hi,') );
+  
 }
 
 String greetEveryone() {
@@ -34,4 +36,13 @@ int addTwoNumbersOptional(int a, [ int? b, int c = 1 ]) {
   b ??= 0;
 
   return a + b;
+}
+
+
+// Parametros con nombre
+String greetPerson({ 
+  required String name, // Parametro obligatorio con required
+  String message = 'Hola,' 
+}) {
+  return '$message $name';
 }
