@@ -1,11 +1,13 @@
 
 void main() {
 
-  final Hero wolverine = new Hero('Logan', 'Regeneracion');
+  // final Hero wolverine = new Hero(name: 'Logan', power: 'Regeneracion');
+  final Hero wolverine = new Hero(name: 'Logan');
 
-  print(wolverine);
-  print(wolverine.name);
-  print(wolverine.power);
+  // print('Hero: $wolverine'); //Hero: Instance of 'Hero'
+  print('Hero: ${ wolverine.toString() }');
+  print('Nombre: ${ wolverine.name }');
+  print('Pöder: ${ wolverine.power }');
 
 }
 
@@ -25,6 +27,17 @@ class Hero {
   //     : name = pName,
   //       power = pPower;
 
-  Hero(this.name, this.power);
+  // Hero(this.name, this.power);
+
+  Hero({ 
+    required this.name, 
+    this.power = 'Sin poder'
+  });
+
+  // Sobreescribiendo el comportamiento de toString()
+  @override
+  String toString() {
+    return 'Name: $name, Power: $power';
+  }
 
 }
